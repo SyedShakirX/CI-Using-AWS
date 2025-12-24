@@ -15,7 +15,8 @@ phases:
     commands:
       - echo "Pre-Build Phase Started"
       - pip install -r requirements.txt
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n2p7k0f2 #View Push Commands in ECR
+      #Below is the command we got from VIEW PUSH COMMANDS from AWS ECR
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n2p7k0f2 
       
     
   build:
