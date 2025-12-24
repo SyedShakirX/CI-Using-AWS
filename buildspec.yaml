@@ -27,8 +27,8 @@ phases:
     commands:
       - docker push public.ecr.aws/n2p7k0f2/code-build-ci:latest
       - echo "Build and Push Completed Successfully"
-
-    finally:
       - echo This is my docker username: $DOCKER_USERNAME #Just to check if our parameter-store variables are working
     
+    
+     
 
