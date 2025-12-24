@@ -31,7 +31,8 @@ phases:
       - docker push public.ecr.aws/n2p7k0f2/code-build-ci:latest
 
       #Just To Check If Your Env Vars are Working
-      - echo "$DOCKER_USERNAME"
+      - |
+        echo "DEBUG: DOCKER_USERNAME='$DOCKER_USERNAME'"
     
     
      
