@@ -1,19 +1,22 @@
 version: 0.2
 env:
   parameter-store:
-    DOCKER_USERNAME: /CodeBuild/Docker/Username
-    DOCKER_PASSWORD: /CodeBuild/Docker/Password
+    # DOCKER_USERNAME: /CodeBuild/Docker/Username
+    # DOCKER_PASSWORD: /CodeBuild/Docker/Password
     DOCKER_PAT: /CodeBuild/Docker/PAT
 
 phases:
   install:
     runtime-versions:  #First step is to install the runtime versions which is python in our case.
       python: 3.11
-    
+      docker: 20
   pre_build:
     commands:
       - echo "Pre-Build Phase Started"
       - pip install -r requirements.txt
+      #Login To DOckerHub
+      #echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      
       #Below is the command we got from VIEW PUSH COMMANDS from AWS ECR
       - "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n2p7k0f2"
       
@@ -26,8 +29,9 @@ phases:
   post_build:
     commands:
       - docker push public.ecr.aws/n2p7k0f2/code-build-ci:latest
-      # - echo "Build and Push Completed Successfully"
-      # - echo "This is my docker username: $DOCKER_USERNAME" #Just to check if our parameter-store variables are working
+
+      #Just To Check If Your Env Vars are Working
+      - echo "Docker username is: $DOCKER_USERNAME"
     
     
      
