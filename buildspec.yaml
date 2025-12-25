@@ -23,12 +23,12 @@ phases:
     
   build:
     commands:
-      - docker build -t code-build-ci .
-      - docker tag code-build-ci:latest public.ecr.aws/n2p7k0f2/code-build-ci:latest
+      - docker build -t aws-ci-cd-python-flask .
+      - docker tag aws-ci-cd-python-flask:latest public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
 
   post_build:
     commands:
-      - docker push public.ecr.aws/n2p7k0f2/code-build-ci:latest
+      - docker push public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
 
     
     
