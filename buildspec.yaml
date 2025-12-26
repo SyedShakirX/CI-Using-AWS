@@ -3,7 +3,7 @@ env:
   parameter-store:
     # DOCKER_USERNAME: /CodeBuild/Docker/Username
     # DOCKER_PASSWORD: /CodeBuild/Docker/Password
-    DOCKER_PAT: /CodeBuild/Docker/PAT
+    # DOCKER_PAT: /CodeBuild/Docker/PAT
 
 phases:
   install:
