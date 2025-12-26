@@ -5,4 +5,4 @@ set -e
 docker pull public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
 
 #I have enabled port 8000 on Security Group attached to my EC2
-docker run -p 5000:5000 -it public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
+docker run -p 5000:5000 -d public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
