@@ -30,7 +30,9 @@ phases:
     commands:
       - docker push public.ecr.aws/n2p7k0f2/aws-ci-cd-python-flask:latest
 
-# Added for CodeDeploy artifact creation - fixes S3 access error
+# The artifacts: block in buildspec.yml is essential for CodePipeline because it packages specific files from your CodeBuild environment into a named zip archive stored in S3, which downstream stages like CodeDeploy then download as input artifacts. Without it, your Docker build and ECR push execute perfectly, but CodeDeploy receives an empty artifact (hence "Unable to access the artifact... xvO21ws"), causing deployment failure. The name: BuildArtif creates the exact S3 path structure (CodePipelineVersion4/BuildArtif/[hash]/) that your Deploy stage Input Artifact expects, while files: '**/*' includes all necessary app files—bridging the gap between build output and deployment.
+
+
 artifacts:
   files: '**/*'           # Include all files from build directory
   name: BuildArtif        # Exact name CodePipeline Deploy stage expects
