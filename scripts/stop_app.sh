@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
 
-contID='docker ps | awk -F" " '{print $1}''
-docker rm -f $contID
+# Get IDs of all running containers
+contIDs=$(docker ps -q)
+
+if [ -n "$contIDs" ]; then
+  docker rm -f $contIDs
+else
+  echo "No running containers to remove."
+fi
